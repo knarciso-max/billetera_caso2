@@ -1,0 +1,46 @@
+<nav class="navbar bg-dark" data-bs-theme="dark">
+  <div class="container">
+    <span class="navbar-brand mb-0 h1">Mi Billetera Digital</span>
+    <span class="badge text-bg-warning">Angular</span>
+  </div>
+</nav>
+
+<main class="container py-4">
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <small class="text-body-secondary text-uppercase">Saldo disponible</small>
+      <p class="display-5 fw-bold text-success mb-0">S/ {{ saldo().toFixed(2) }}</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <h2 class="h5">Movimientos</h2>
+      <ul class="list-group">
+        @for (m of movimientos(); track $index) {
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span class="badge"
+                  [class.text-bg-danger]="m.tipo === 'GASTO'"
+                  [class.text-bg-success]="m.tipo === 'RECARGA'">
+              {{ m.tipo === 'GASTO' ? 'Gasto' : 'Recarga' }}
+            </span>
+            <span [class.text-danger]="m.tipo === 'GASTO'"
+                  [class.text-success]="m.tipo === 'RECARGA'">
+              {{ m.tipo === 'GASTO' ? '−' : '+' }} S/ {{ m.monto.toFixed(2) }}
+            </span>
+          </li>
+        }
+      </ul>
+      @if (movimientos().length === 0) {
+        <p class="text-body-secondary mt-3">Aún no hay movimientos</p>
+      }
+    </div>
+
+    <div class="col-lg-5">
+      <app-nuevo-movimiento
+        [saldo]="saldo()"
+        (movimientoSolicitado)="alRegistrar($event)">
+      </app-nuevo-movimiento>
+    </div>
+  </div>
+</main>

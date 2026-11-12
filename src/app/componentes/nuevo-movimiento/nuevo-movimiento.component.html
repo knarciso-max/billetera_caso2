@@ -1,0 +1,33 @@
+<div class="card shadow-sm h-100">
+  <div class="card-header text-bg-primary fw-semibold">Nuevo movimiento</div>
+  <div class="card-body">
+
+    <div class="mb-3">
+      <label for="tipo" class="form-label">Tipo de movimiento</label>
+      <select id="tipo" class="form-select" [value]="tipo()" (change)="alCambiarTipo($event)">
+        <option value="RECARGA">Recarga</option>
+        <option value="GASTO">Gasto</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="monto" class="form-label">Monto (S/)</label>
+      <input id="monto" type="text" inputmode="decimal" class="form-control"
+             placeholder="0.00"
+             [value]="texto()"
+             [class.is-invalid]="error() !== null"
+             (input)="alEscribir($event)"
+             (keyup.enter)="alSolicitar()">
+    </div>
+
+    @if (error(); as mensaje) {
+      <div class="alert alert-danger py-2" role="alert">{{ mensaje }}</div>
+    }
+
+    <button type="button" class="btn btn-primary w-100"
+            [disabled]="!formularioValido()"
+            (click)="alSolicitar()">
+      Registrar movimiento
+    </button>
+  </div>
+</div>
