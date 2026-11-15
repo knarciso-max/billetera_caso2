@@ -1,9 +1,9 @@
 Integrantes – Grupo 9
 
-Víctor Ernesto Gutiérrez Birot
-Renzo Enrique Lara Condori
-Karen Narciso Checasaca
-Ana Gabriela Silva Yauyo
+- Víctor Ernesto Gutiérrez Birot
+- Renzo Enrique Lara Condori
+- Karen Narciso Checasaca
+- Ana Gabriela Silva Yauyo
 
 
 
